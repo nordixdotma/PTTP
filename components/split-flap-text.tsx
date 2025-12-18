@@ -144,24 +144,38 @@ function SplitFlapTextInner({ text, className = "", speed = 50 }: SplitFlapTextP
     return () => clearTimeout(timer)
   }, [])
 
+  // Calculate approximate width per char (0.65em) + gap (0.08em) + safety margin
+  // "NOUREDDINE" is 10 chars.
+  // We use cqi units to scale relative to the container width
+  const charWidthEm = 0.75
+  const fitFontSize = 100 / (text.length * charWidthEm)
+
   return (
     <div
-      className={`inline-flex gap-[0.08em] items-center cursor-pointer ${className}`}
-      aria-label={text}
-      onMouseEnter={handleMouseEnter}
-      style={{ perspective: "1000px" }}
+      className={`w-full max-w-full ${className}`}
+      style={{ containerType: "inline-size" }}
     >
-      {chars.map((char, index) => (
-        <SplitFlapChar
-          key={index}
-          char={char.toUpperCase()}
-          index={index}
-          animationKey={animationKey}
-          skipEntrance={hasInitialized}
-          speed={speed}
-          playClick={audio?.playClick}
-        />
-      ))}
+      <div
+        className="inline-flex gap-[0.08em] items-center cursor-pointer"
+        aria-label={text}
+        onMouseEnter={handleMouseEnter}
+        style={{
+          perspective: "1000px",
+          fontSize: `clamp(2rem, ${fitFontSize}cqi, 14rem)`,
+        }}
+      >
+        {chars.map((char, index) => (
+          <SplitFlapChar
+            key={index}
+            char={char.toUpperCase()}
+            index={index}
+            animationKey={animationKey}
+            skipEntrance={hasInitialized}
+            speed={speed}
+            playClick={audio?.playClick}
+          />
+        ))}
+      </div>
     </div>
   )
 }
@@ -239,7 +253,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       <div
         style={{
           width: "0.3em",
-          fontSize: "clamp(4rem, 15vw, 14rem)",
+          height: "1em", // maintain aspect ratio placeholder
         }}
       />
     )
@@ -252,7 +266,6 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       transition={{ delay: tileDelay, duration: 0.3, ease: "easeOut" }}
       className="relative overflow-hidden flex items-center justify-center font-[family-name:var(--font-bebas)]"
       style={{
-        fontSize: "clamp(4rem, 15vw, 14rem)",
         width: "0.65em",
         height: "1.05em",
         backgroundColor: bgColor,
