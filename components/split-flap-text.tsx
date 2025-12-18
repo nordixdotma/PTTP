@@ -264,7 +264,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
       initial={skipEntrance ? false : { opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: tileDelay, duration: 0.3, ease: "easeOut" }}
-      className="relative overflow-hidden flex items-center justify-center font-[family-name:var(--font-bebas)]"
+      className="relative overflow-hidden flex items-center justify-center font-(--font-bebas)"
       style={{
         width: "0.65em",
         height: "1.05em",
@@ -273,7 +273,7 @@ function SplitFlapChar({ char, index, animationKey, skipEntrance, speed, playCli
         transition: "background-color 0.15s ease",
       }}
     >
-      <div className="absolute inset-x-0 top-1/2 h-[1px] bg-black/20 pointer-events-none z-10" />
+      <div className="absolute inset-x-0 top-1/2 h-px bg-black/20 pointer-events-none z-10" />
 
       <div className="absolute inset-x-0 top-0 bottom-1/2 flex items-end justify-center overflow-hidden">
         <span

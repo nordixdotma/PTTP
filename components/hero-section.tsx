@@ -48,7 +48,7 @@ export function HeroSection() {
           </div>
         </SplitFlapAudioProvider>
 
-        <h2 className="font-[var(--font-bebas)] text-muted-foreground/60 text-[clamp(1rem,3vw,2rem)] mt-4 tracking-wide">
+        <h2 className="font-(--font-bebas) text-muted-foreground/60 text-[clamp(1rem,3vw,2rem)] mt-4 tracking-wide">
           Studies in Controlled Environments
         </h2>
 
@@ -62,7 +62,7 @@ export function HeroSection() {
             className="group inline-flex items-center gap-3 border border-foreground/20 px-6 py-3 font-mono text-xs uppercase tracking-widest text-foreground hover:border-accent hover:text-accent transition-all duration-200"
           >
             <ScrambleTextOnHover text="View Experiments" as="span" duration={0.6} />
-            <BitmapChevron className="transition-transform duration-[400ms] ease-in-out group-hover:rotate-45" />
+            <BitmapChevron className="transition-transform duration-400 ease-in-out group-hover:rotate-45" />
           </a>
           <a
             href="#signals"
